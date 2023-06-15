@@ -28,7 +28,8 @@ tanggalTerpilih = (tanggalTerpilih[0]), (tanggalTerpilih[1])
 
 dataTerpilih = data_covid[(data_covid['Date'] >= pd.to_datetime(tanggalTerpilih[0])) & (data_covid['Date'] <= pd.to_datetime(tanggalTerpilih[1]))]
 
-jenis_kasus = st.selectbox('Pilih Jenis Kasus', ['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases', 'Total Deaths', 'Total Recovered', 'Total Active Cases' ])
+jenis_kasus = st.selectbox('Pilih Jenis Kasus', ['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases',
+                                                 'Total Deaths', 'Total Recovered', 'Total Active Cases' ])
 
 p = figure(title=f'Jumlah {jenis_kasus} per Tanggal {tanggalTerpilih[0]} hingga {tanggalTerpilih[1]}', x_axis_type='datetime', plot_width=800, plot_height=400)
 source = ColumnDataSource(data=dataTerpilih)
@@ -45,7 +46,7 @@ def plot_tap_event(event):
 
 p.on_event(Tap, plot_tap_event)
 
-hover = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, %jenis_kasus'@{jenis_kasus}')], formatters={'@Date': 'datetime'})
+hover = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, @jenis_kasus,'@{jenis_kasus}')], formatters={'@Date': 'datetime'})
 
 p.add_tools(hover)
 
