@@ -19,6 +19,7 @@ st.header('Jumlah Kasus per Hari')
 tanggalMulai = data_covid['Date'].min().date()
 tanggalAkhir = data_covid['Date'].max().date()
 
+data_terfilter = data_covid[(data_covid['Date']).dt.date == tanggal_terpilih]
 
 tanggalTerpilih = st.slider('Pilih Tanggal', tanggalMulai, tanggalAkhir, (tanggalMulai, tanggalAkhir))
 
