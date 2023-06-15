@@ -22,7 +22,7 @@ tanggalAkhir = pd.to_datetime(data_covid['Date']).max().date()
 
 tanggalTerpilih = st.slider('Pilih Tanggal', tanggalMulai, tanggalAkhir, (tanggalMulai, tanggalAkhir))
 
-tanggalTerpilih = (pd.Timestamp.fromtimestamp(tanggalTerpilih[0]), pd.Timestamp.fromtimestamp(tanggalTerpilih[1]))
+#tanggalTerpilih = (pd.Timestamp.fromtimestamp(tanggalTerpilih[0]), pd.Timestamp.fromtimestamp(tanggalTerpilih[1]))
 
 dataTerpilih = data_covid[(data_covid['Date'] >= tanggalTerpilih[0]) & (data_covid['Date'] <= tanggalTerpilih[1])]
 
