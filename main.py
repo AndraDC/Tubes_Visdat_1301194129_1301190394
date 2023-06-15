@@ -50,7 +50,7 @@ hover = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, f'@{jenis_ka
 
 p.add_tools(hover)
 
-st.bokeh_chart(p)
+st.bokeh_chart(p, use_container_width=True)
 
 if selected_indices:
     data_terpilih = dataTerpilih.iloc[selected_indices]
