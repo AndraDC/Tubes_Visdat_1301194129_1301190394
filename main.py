@@ -1,5 +1,3 @@
-# Romi Rukman-1301194129
-
 # Visualisasi Data Menggunakan Bokeh dan deploy aplikasi menggunakan Streamlit Dataset Covid-19 https://www.kaggle.com/datasets/hendratno/covid19-indonesia
 
 
@@ -18,14 +16,11 @@ data_covid['Date'] = pd.to_datetime(data_covid['Date'])
 st.title('Visualisasi Data COVID-19 Indonesia')
 st.header('Jumlah Kasus per Hari')
 
-tanggalMulai = datetime.datetime(2020,3,11)
-tanggalAkhir = datetime.datetime(2022,9,16)
+tanggalMulai = int(data_covid['Date'].min().timestamp())
+tanggalAkhir = int(data_covid['Date'].max().timestamp())
 
-#min_date = datetime.datetime(2020,3,11)
-#max_date = datetime.datetime(2022,9,16)
-#slider=st.slider('Pilih', min_date.strftime(%Y-%m-%d), max_date.strftime(%Y-%m-%d), min_date.strftime(%Y-%m-%d))
 
-tanggalTerpilih = st.slider('Pilih Tanggal', tanggalMulai, tanggalAkhir, tanggalMulai)
+tanggalTerpilih = st.slider('Pilih Tanggal', tanggalMulai, tanggalAkhir, (tanggalMulai, tanggalAkhir))
 
 tanggalTerpilih = (pd.Timestamp.fromtimestamp(tanggalTerpilih[0]), pd.Timestamp.fromtimestamp(tanggalTerpilih[1]))
 
