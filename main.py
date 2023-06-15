@@ -16,13 +16,13 @@ data_covid = pd.read_csv('test.csv')
 st.title('Visualisasi Data COVID-19 Indonesia')
 st.header('Jumlah Kasus per Hari')
 
-tanggalMulai = pd.to_datetime(data_covid['Date']).min().date()
-tanggalAkhir = pd.to_datetime(data_covid['Date']).max().date()
+tanggalMulai = pd.to_datetime(data_covid['Date']).min().timestamp()
+tanggalAkhir = pd.to_datetime(data_covid['Date']).max().timestamp()
 
 
 tanggalTerpilih = st.slider('Pilih Tanggal', tanggalMulai, tanggalAkhir, (tanggalMulai, tanggalAkhir))
 
-#tanggalTerpilih = (pd.Timestamp.fromtimestamp(tanggalTerpilih[0]), pd.Timestamp.fromtimestamp(tanggalTerpilih[1]))
+tanggalTerpilih = (pd.Timestamp.fromtimestamp(tanggalTerpilih[0]), pd.Timestamp.fromtimestamp(tanggalTerpilih[1]))
 
 dataTerpilih = data_covid[(data_covid['Date'] >= tanggalTerpilih[0]) & (data_covid['Date'] <= tanggalTerpilih[1])]
 
