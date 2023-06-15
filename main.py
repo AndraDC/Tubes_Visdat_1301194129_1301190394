@@ -25,7 +25,7 @@ tanggalAkhir = datetime.datetime(2022,9,16)
 #max_date = datetime.datetime(2022,9,16)
 #slider=st.slider('Pilih', min_date.strftime(%Y-%m-%d), max_date.strftime(%Y-%m-%d), min_date.strftime(%Y-%m-%d))
 
-tanggalTerpilih = st.slider('Pilih Tanggal', tanggalMulai.strftime(%Y-%m-%d), tanggalAkhir.strftime(%Y-%m-%d), tanggalMulai.strftime(%Y-%m-%d))
+tanggalTerpilih = st.slider('Pilih Tanggal', tanggalMulai.strftime('%Y-%m-%d'), tanggalAkhir.strftime('%Y-%m-%d'), tanggalMulai.strftime('%Y-%m-%d'))
 
 tanggalTerpilih = (pd.Timestamp.fromtimestamp(tanggalTerpilih[0]), pd.Timestamp.fromtimestamp(tanggalTerpilih[1]))
 
