@@ -24,7 +24,7 @@ tanggalTerpilih = st.slider('Pilih Tanggal', tanggalMulai, tanggalAkhir, (tangga
 
 data_terfilter = data_covid[(data_covid['Date']).dt.date == tanggalTerpilih]
 
-tanggalTerpilih = (pd.Timestamp.fromtimestamp(tanggalTerpilih[0]), pd.Timestamp.fromtimestamp(tanggalTerpilih[1]))
+tanggalTerpilih = int((pd.Timestamp.fromtimestamp(tanggalTerpilih[0]), pd.Timestamp.fromtimestamp(tanggalTerpilih[1])))
 
 dataTerpilih = data_covid[(data_covid['Date'] >= tanggalTerpilih[0]) & (data_covid['Date'] <= tanggalTerpilih[1])]
 
