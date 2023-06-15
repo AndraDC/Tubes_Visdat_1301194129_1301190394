@@ -26,7 +26,7 @@ data_terfilter = data_covid[(data_covid['Date']).dt.date == tanggalTerpilih]
 
 tanggalTerpilih = (tanggalTerpilih[0]), (tanggalTerpilih[1])
 
-dataTerpilih = data_covid[(data_covid['Date'] >= tanggalTerpilih[0]) & (data_covid['Date'] <= tanggalTerpilih[1])]
+dataTerpilih = data_covid[(data_covid['Date'] >= pd.to_datetime(tanggalTerpilih[0])) & (data_covid['Date'] <= pd.to_datetime(tanggalTerpilih[1]))]
 
 jenis_kasus = st.selectbox('Pilih Jenis Kasus', ['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases', 'Total Deaths', 'Total Recovered', 'Total Active Cases' ])
 
