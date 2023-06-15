@@ -11,13 +11,13 @@ from bokeh.events import Tap
 
 data_covid = pd.read_csv('test.csv')  
 
-#data_covid['Date'] = pd.to_datetime(data_covid['Date'])
+data_covid['Date'] = pd.to_datetime(data_covid['Date'])
 
 st.title('Visualisasi Data COVID-19 Indonesia')
 st.header('Jumlah Kasus per Hari')
 
-tanggalMulai = int(pd.to_datetime(data_covid['Date']).min().timestamp())
-tanggalAkhir = int(pd.to_datetime(data_covid['Date']).max().timestamp())
+tanggalMulai = int(data_covid['Date'].min().timestamp())
+tanggalAkhir = int(data_covid['Date'].max().timestamp())
 
 
 tanggalTerpilih = st.slider('Pilih Tanggal', tanggalMulai, tanggalAkhir, (tanggalMulai, tanggalAkhir))
