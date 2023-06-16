@@ -26,6 +26,7 @@ data_terfilter = data_covid[(data_covid['Date']).dt.date == tanggalTerpilih]
 tanggalTerpilih = (tanggalTerpilih[0]), (tanggalTerpilih[1])
 
 dataTerpilih = data_covid[(data_covid['Date'] >= pd.to_datetime(tanggalTerpilih[0])) & (data_covid['Date'] <= pd.to_datetime(tanggalTerpilih[1]))]
+prov = (data_covid['Province'])
 
 jenis_kasus = st.selectbox('Pilih Jenis Kasus', ['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases',
                                                  'Total Deaths', 'Total Recovered', 'Total Active Cases' ])
@@ -36,7 +37,7 @@ source = ColumnDataSource(data=dataTerpilih)
 p.line('Date', jenis_kasus, source=source, line_width=2)
 
 b = figure(title=f'bar', plot_width=800, plot_height=400)
-sc = ColumnDataSource(data=dataTerpilih)
+sc = ColumnDataSource(data=prov)
 b.vbar('Province', jenis_kasus, source=sc)
 
 selected_indices = []
