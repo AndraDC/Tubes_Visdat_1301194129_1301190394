@@ -27,20 +27,21 @@ tanggalTerpilih = (tanggalTerpilih[0]), (tanggalTerpilih[1])
 
 dataTerpilih = data_covid[(data_covid['Date'] >= pd.to_datetime(tanggalTerpilih[0])) & (data_covid['Date'] <= pd.to_datetime(tanggalTerpilih[1]))]
 
-jenis_kasus = st.selectbox('Pilih Jenis Kasus', ['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases',
-                                                 'Total Deaths', 'Total Recovered', 'Total Active Cases' ])
+jenis_kasus = data_covid[['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases','Total Deaths', 'Total Recovered', 'Total Active Cases' ]]
+kasus = jenis_kasus.columns.tolist()
+opsi = st.selectbox('Pilih Jenis Kasus', kasus)
 
-p = figure(title=f'Jumlah {jenis_kasus} per Tanggal {tanggalTerpilih[0]} hingga {tanggalTerpilih[1]}', x_axis_type='datetime', 
+p = figure(title=f'Jumlah {opsi} per Tanggal {tanggalTerpilih[0]} hingga {tanggalTerpilih[1]}', x_axis_type='datetime', 
            x_axis_label='Tanggal', y_axis_label='Jumlah Kasus', plot_width=800, plot_height=400)
 source = ColumnDataSource(data=dataTerpilih)
-p.line('Date', jenis_kasus, source=source, line_width=2)
+p.line('Date', opsi, source=source, line_width=2)
 p.yaxis.formatter = NumeralTickFormatter(format='0,0')
 
-data_grouped = dataTerpilih.groupby('Province')[jenis_kasus].sum().reset_index()
+data_grouped = dataTerpilih.groupby('Province')[opsi].sum().reset_index()
 prov = data_grouped['Province']
 b = figure(title='', x_range=prov, plot_width=800, plot_height=500)
 sc = ColumnDataSource(data=data_grouped)
-b.vbar(x='Province', top=jenis_kasus, source=sc, width=0.9)
+b.vbar(x='Province', top=opsi, source=sc, width=0.9)
 b.xaxis.major_label_orientation = "vertical"
 b.yaxis.formatter = NumeralTickFormatter(format='0,0')
 
@@ -56,11 +57,11 @@ def plot_tap_event(event):
 p.on_event(Tap, plot_tap_event)
 b.on_event(Tap, plot_tap_event)
 
-hover1 = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, '@{$jenis_kasus}')],
-                   formatters={'@Date': 'datetime', '@{jenis_kasus}': 'numeral'})
+hover1 = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (opsi, '@{$opsi}')],
+                   formatters={'@Date': 'datetime', '@{opsi}': 'numeral'})
 p.add_tools(hover1)
 
-hover2 = HoverTool(tooltips=[(jenis_kasus, '@{jenis_kasus}')])
+hover2 = HoverTool(tooltips=[(opsi, '@{opsi}')])
 b.add_tools(hover2)
 
 st.bokeh_chart(p, use_container_width=True)
