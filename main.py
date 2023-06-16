@@ -40,7 +40,7 @@ prov = data_grouped['Province']
 b = figure(title='Bar', x_range=prov, plot_width=800, plot_height=400)
 sc = ColumnDataSource(data=data_grouped)
 b.vbar(x='Province', top=jenis_kasus, source=sc, width=0.9)
-
+b.xaxis.major_label_orientation = "vertical"
 
 selected_indices = []
 
