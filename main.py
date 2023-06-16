@@ -36,7 +36,7 @@ p = figure(title=f'Jumlah {jenis_kasus} per Tanggal {tanggalTerpilih[0]} hingga 
 source = ColumnDataSource(data=dataTerpilih)
 p.line('Date', jenis_kasus, source=source, line_width=2)
 
-b = figure(title=f'bar', plot_width=800, plot_height=400)
+b = figure(title=f'bar', x_range=data_covid['Province'], plot_width=800, plot_height=400)
 sc = ColumnDataSource(data=prov)
 b.vbar('Province', jenis_kasus, source=sc)
 
