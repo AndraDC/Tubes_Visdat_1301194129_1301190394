@@ -24,6 +24,10 @@ tanggalAkhir = data_covid['Date'].max().date()
 col1, col2 = st.columns(2)
 with col1:
   tanggalTerpilih = st.slider('Pilih Tanggal', tanggalMulai, tanggalAkhir, (tanggalMulai, tanggalAkhir))
+  data_terfilter = data_covid[(data_covid['Date']).dt.date == tanggalTerpilih]
+  tanggalTerpilih = (tanggalTerpilih[0]), (tanggalTerpilih[1])
+  dataTerpilih = data_covid[(data_covid['Date'] >= pd.to_datetime(tanggalTerpilih[0])) & (data_covid['Date'] <= pd.to_datetime(tanggalTerpilih[1]))]
+  
   jenis_kasus = st.selectbox('Pilih Jenis Kasus', ['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases',
                                                  'Total Deaths', 'Total Recovered', 'Total Active Cases' ])
 
@@ -34,11 +38,6 @@ with col2:
   p.line('Date', jenis_kasus, source=source, line_width=2)
   st.bokeh_chart(p, use_container_width=True)
 
-data_terfilter = data_covid[(data_covid['Date']).dt.date == tanggalTerpilih]
-
-tanggalTerpilih = (tanggalTerpilih[0]), (tanggalTerpilih[1])
-
-dataTerpilih = data_covid[(data_covid['Date'] >= pd.to_datetime(tanggalTerpilih[0])) & (data_covid['Date'] <= pd.to_datetime(tanggalTerpilih[1]))]
 
 
 
