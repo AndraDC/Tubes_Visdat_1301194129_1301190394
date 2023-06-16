@@ -32,9 +32,9 @@ jenis_kasus = st.selectbox('Pilih Jenis Kasus', ['New Cases', 'New Deaths', 'New
 
 p = figure(title=f'Jumlah {jenis_kasus} per Tanggal {tanggalTerpilih[0]} hingga {tanggalTerpilih[1]}', x_axis_type='datetime', 
            x_axis_label='Tanggal', y_axis_label='Jumlah Kasus', plot_width=800, plot_height=400)
-source = ColumnDataSource(data=dataTerpilih)
-source2 = ColumnDataSource(data=dict(Date=dataTerpilih['Date'], value=dataTerpilih[jenis_kasus]))
-p.line('Date', jenis_kasus, source=source2, line_width=2)
+source = ColumnDataSource(data=dataTerpilih, value=dataTerpilih[jenis_kasus)
+source2 = ColumnDataSource(data=dict(Date=dataTerpilih['Date'], ]))
+p.line('Date', jenis_kasus, source=source, line_width=2)
 
 data_grouped = dataTerpilih.groupby('Province')[jenis_kasus].sum().reset_index()
 prov = data_grouped['Province']
