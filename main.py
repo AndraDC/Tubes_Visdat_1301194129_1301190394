@@ -32,7 +32,7 @@ with col1:
                                                  'Total Deaths', 'Total Recovered', 'Total Active Cases' ])
 
 with col2:
-  with st.container:
+  with st.container():
     p = figure(title=f'Jumlah {jenis_kasus} per Tanggal {tanggalTerpilih[0]} hingga {tanggalTerpilih[1]}', x_axis_type='datetime', 
            x_axis_label='Tanggal', y_axis_label='Jumlah Kasus', plot_width=800, plot_height=400)
     source = ColumnDataSource(data=dataTerpilih)
