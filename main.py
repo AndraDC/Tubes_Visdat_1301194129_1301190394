@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 import datetime
 from bokeh.plotting import figure
-from bokeh.models import ColumnDataSource, HoverTool
+from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter
 from bokeh.events import Tap
 
 data_covid = pd.read_csv('test (2).csv')  
