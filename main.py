@@ -58,8 +58,7 @@ hover1 = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, f'@{jenis_k
                    formatters={'@Date': 'datetime', f'@{jenis_kasus}': 'printf'})
 p.add_tools(hover1)
 
-hover2 = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, f'@{jenis_kasus}')],
-                   formatters={'@Date': 'datetime', f'@{jenis_kasus}': 'printf'})
+hover2 = HoverTool(tooltips=[(jenis_kasus, f'@{jenis_kasus}')])
 b.add_tools(hover2)
 
 st.bokeh_chart(p, use_container_width=True)
