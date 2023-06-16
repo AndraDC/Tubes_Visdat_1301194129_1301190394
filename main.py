@@ -29,6 +29,8 @@ dataTerpilih = data_covid[(data_covid['Date'] >= pd.to_datetime(tanggalTerpilih[
 
 kasus = st.selectbox('Pilih Jenis Kasus', list(dataTerpilih[['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases','Total Deaths', 'Total Recovered', 'Total Active Cases']]))
 
+databaru = dataTerpilih.loc[(dataTerpili)& (dataTerpilih = kasus)]
+
 def format_tooltip(column):
     return f'@{column}'
 
@@ -58,7 +60,7 @@ def plot_tap_event(event):
 p.on_event(Tap, plot_tap_event)
 b.on_event(Tap, plot_tap_event)
 
-hover1 = HoverTool(tooltips=[('Tanggal','@Date{%F}' ), (kasus,f'@{kasus}')],
+hover1 = HoverTool(tooltips=[('Tanggal','@Date{%F}' ), (kasus,f'@{databaru}')],
                    formatters={'@Date': 'datetime'})
 p.add_tools(hover1)
 
