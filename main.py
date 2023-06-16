@@ -34,6 +34,7 @@ p = figure(title=f'Jumlah {jenis_kasus} per Tanggal {tanggalTerpilih[0]} hingga 
            x_axis_label='Tanggal', y_axis_label='Jumlah Kasus', plot_width=800, plot_height=400)
 source = ColumnDataSource(data=dataTerpilih)
 p.line('Date', jenis_kasus, source=source, line_width=2)
+p.vbar('Province', jenis_kasus, source=source)
 
 selected_indices = []
 
