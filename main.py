@@ -21,7 +21,7 @@ tanggalAkhir = data_covid['Date'].max().date()
 
 
 
-col1, col2 = st.columns(3)
+col1, col2 = st.columns(2)
 with col1:
   tanggalTerpilih = st.slider('Pilih Tanggal', tanggalMulai, tanggalAkhir, (tanggalMulai, tanggalAkhir))
   jenis_kasus = st.selectbox('Pilih Jenis Kasus', ['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases',
