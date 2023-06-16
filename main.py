@@ -9,7 +9,7 @@ from bokeh.plotting import figure
 from bokeh.models import ColumnDataSource, HoverTool
 from bokeh.events import Tap
 
-data_covid = pd.read_csv('test (2).csv')  
+data_covid = pd.read_csv('test.csv')  
 
 data_covid['Date'] = pd.to_datetime(data_covid['Date'])
 
