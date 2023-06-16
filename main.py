@@ -37,7 +37,7 @@ p.line('Date', jenis_kasus, source=source, line_width=2)
 
 b = figure(title=f'bar', plot_width=800, plot_height=400)
 sc = ColumnDataSource(data=dataTerpilih)
-b.vbar('Province', jenis_kasus, source=source)
+b.vbar('Province', jenis_kasus, source=sc)
 
 selected_indices = []
 
