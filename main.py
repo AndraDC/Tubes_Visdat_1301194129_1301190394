@@ -54,11 +54,11 @@ def plot_tap_event(event):
 
 p.on_event(Tap, plot_tap_event)
 
-hover1 = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, f'@{jenis_kasus}')],
-                   formatters={'@Date': 'datetime', f'@{jenis_kasus}': 'printf'})
+hover1 = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, '@{jenis_kasus}')],
+                   formatters={'@Date': 'datetime', '@{jenis_kasus}': 'values'})
 p.add_tools(hover1)
 
-hover2 = HoverTool(tooltips=[(jenis_kasus, f'@{jenis_kasus}')])
+hover2 = HoverTool(tooltips=[(jenis_kasus, '@{jenis_kasus}')])
 b.add_tools(hover2)
 
 st.bokeh_chart(p, use_container_width=True)
