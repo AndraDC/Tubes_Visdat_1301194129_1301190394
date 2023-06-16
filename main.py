@@ -19,10 +19,16 @@ st.header('Jumlah Kasus per Hari')
 tanggalMulai = data_covid['Date'].min().date()
 tanggalAkhir = data_covid['Date'].max().date()
 
-with st.sidebar:
+
+
+col1, col2 = st.columns(3)
+with col1:
   tanggalTerpilih = st.slider('Pilih Tanggal', tanggalMulai, tanggalAkhir, (tanggalMulai, tanggalAkhir))
   jenis_kasus = st.selectbox('Pilih Jenis Kasus', ['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases',
                                                  'Total Deaths', 'Total Recovered', 'Total Active Cases' ])
+
+with col2:
+  st.bokeh_chart(p, use_container_width=True)
 
 data_terfilter = data_covid[(data_covid['Date']).dt.date == tanggalTerpilih]
 
@@ -52,7 +58,7 @@ hover = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, '@{jenis_kas
 
 p.add_tools(hover)
 
-st.bokeh_chart(p, use_container_width=True)
+
 
 if selected_indices:
     data_terpilih = dataTerpilih.iloc[selected_indices]
