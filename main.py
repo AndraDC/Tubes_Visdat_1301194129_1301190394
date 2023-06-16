@@ -37,7 +37,7 @@ p.line('Date', jenis_kasus, source=source, line_width=2)
 
 data_grouped = data_covid.groupby('Province')[jenis_kasus].sum().reset_index()
 prov = data_grouped['Province']
-b = figure(title='Bar', x_range=prov, plot_width=800, plot_height=400)
+b = figure(title='', x_range=prov, plot_width=800, plot_height=400)
 sc = ColumnDataSource(data=data_grouped)
 b.vbar(x='Province', top=jenis_kasus, source=sc, width=0.9)
 b.xaxis.major_label_orientation = "vertical"
