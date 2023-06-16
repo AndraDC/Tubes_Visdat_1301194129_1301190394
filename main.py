@@ -33,8 +33,10 @@ jenis_kasus = st.selectbox('Pilih Jenis Kasus', ['New Cases', 'New Deaths', 'New
 p = figure(title=f'Jumlah {jenis_kasus} per Tanggal {tanggalTerpilih[0]} hingga {tanggalTerpilih[1]}', x_axis_type='datetime', 
            x_axis_label='Tanggal', y_axis_label='Jumlah Kasus', plot_width=800, plot_height=400)
 source = ColumnDataSource(data=dataTerpilih)
-p.line('Province', jenis_kasus, source=source, line_width=2)
-#p.bar('Province', jenis_kasus, source=source)
+p.line('Date', jenis_kasus, source=source, line_width=2)
+
+b = figure(title=f'bar', plot_width=800, plot_height=400)
+b.bar('Province', jenis_kasus, source=source)
 
 selected_indices = []
 
@@ -52,6 +54,7 @@ hover = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, '@{jenis_kas
 p.add_tools(hover)
 
 st.bokeh_chart(p, use_container_width=True)
+st.bokeh_chart(b, use_container_width=True)
 
 if selected_indices:
     data_terpilih = dataTerpilih.iloc[selected_indices]
