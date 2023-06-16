@@ -19,7 +19,6 @@ st.header('Jumlah Kasus per Hari')
 tanggalMulai = data_covid['Date'].min().date()
 tanggalAkhir = data_covid['Date'].max().date()
 
-
 tanggalTerpilih = st.slider('Pilih Tanggal', tanggalMulai, tanggalAkhir, (tanggalMulai, tanggalAkhir))
 
 data_terfilter = data_covid[(data_covid['Date']).dt.date == tanggalTerpilih]
@@ -47,7 +46,7 @@ def plot_tap_event(event):
 
 p.on_event(Tap, plot_tap_event)
 
-hover = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (selected_indices, f'@{selected_indices}')], formatters={'@Date': 'datetime'})
+hover = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, f'${jenis_kasus}')], formatters={'@Date': 'datetime'})
 
 p.add_tools(hover)
 
