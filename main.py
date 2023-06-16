@@ -27,20 +27,20 @@ tanggalTerpilih = (tanggalTerpilih[0]), (tanggalTerpilih[1])
 
 dataTerpilih = data_covid[(data_covid['Date'] >= pd.to_datetime(tanggalTerpilih[0])) & (data_covid['Date'] <= pd.to_datetime(tanggalTerpilih[1]))]
 
-jenis_kasus = data_covid[['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases','Total Deaths', 'Total Recovered', 'Total Active Cases' ]]
+jenis_kasus = dataTerpilih[['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases','Total Deaths', 'Total Recovered', 'Total Active Cases' ]]
 kasus = jenis_kasus.columns.tolist()
 opsi = st.selectbox('Pilih Jenis Kasus', kasus)
 
 p = figure(title=f'Jumlah {kasus} per Tanggal {tanggalTerpilih[0]} hingga {tanggalTerpilih[1]}', x_axis_type='datetime', 
            x_axis_label='Tanggal', y_axis_label='Jumlah Kasus', plot_width=800, plot_height=400)
-source = ColumnDataSource(data=dataTerpilih)
+source = ColumnDataSource(data=dict(dataTerpilih))
 p.line('Date', kasus, source=source, line_width=2)
 p.yaxis.formatter = NumeralTickFormatter(format='0,0')
 
 data_grouped = dataTerpilih.groupby('Province')[kasus].sum().reset_index()
 prov = data_grouped['Province']
 b = figure(title='', x_range=prov, plot_width=800, plot_height=500)
-sc = ColumnDataSource(data=data_grouped)
+sc = ColumnDataSource(data=dict(data_grouped))
 b.vbar(x='Province', top=kasus, source=sc, width=0.9)
 b.xaxis.major_label_orientation = "vertical"
 b.yaxis.formatter = NumeralTickFormatter(format='0,0')
