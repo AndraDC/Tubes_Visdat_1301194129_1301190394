@@ -28,6 +28,10 @@ with col1:
                                                  'Total Deaths', 'Total Recovered', 'Total Active Cases' ])
 
 with col2:
+  p = figure(title=f'Jumlah {jenis_kasus} per Tanggal {tanggalTerpilih[0]} hingga {tanggalTerpilih[1]}', x_axis_type='datetime', 
+           x_axis_label='Tanggal', y_axis_label='Jumlah Kasus', plot_width=800, plot_height=400)
+  source = ColumnDataSource(data=dataTerpilih)
+  p.line('Date', jenis_kasus, source=source, line_width=2)
   st.bokeh_chart(p, use_container_width=True)
 
 data_terfilter = data_covid[(data_covid['Date']).dt.date == tanggalTerpilih]
@@ -38,10 +42,7 @@ dataTerpilih = data_covid[(data_covid['Date'] >= pd.to_datetime(tanggalTerpilih[
 
 
 
-p = figure(title=f'Jumlah {jenis_kasus} per Tanggal {tanggalTerpilih[0]} hingga {tanggalTerpilih[1]}', x_axis_type='datetime', 
-           x_axis_label='Tanggal', y_axis_label='Jumlah Kasus', plot_width=800, plot_height=400)
-source = ColumnDataSource(data=dataTerpilih)
-p.line('Date', jenis_kasus, source=source, line_width=2)
+
 
 selected_indices = []
 
