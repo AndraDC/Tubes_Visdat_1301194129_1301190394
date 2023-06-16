@@ -38,7 +38,8 @@ p.line('Date', jenis_kasus, source=source, line_width=2)
 
 b = figure(title=f'bar', x_range=prov, plot_width=800, plot_height=400)
 sc = ColumnDataSource(data=dict(x=prov))
-b.vbar('x', top=jenis_kasus, source=sc, width=0.9)
+#b.vbar('x', top=jenis_kasus, source=sc, width=0.9)
+b.vbar(x='Province', top=jenis_kasus, source=ColumnDataSource(data_covid), width=0.9)
 
 selected_indices = []
 
