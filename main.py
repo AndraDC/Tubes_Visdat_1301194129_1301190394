@@ -54,8 +54,8 @@ def plot_tap_event(event):
 
 p.on_event(Tap, plot_tap_event)
 
-hover1 = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, f'@{jenis_kasus}{{0,0}}')],
-                   formatters={'@Date': 'datetime'}, 
+hover1 = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, f'@{jenis_kasus}')],
+                   formatters={'@Date': 'datetime', f'@{jenis_kasus}': 'printf'}, 
                    mode='vline')
 p.add_tools(hover1)
 
