@@ -35,7 +35,7 @@ p = figure(title=f'Jumlah {jenis_kasus} per Tanggal {tanggalTerpilih[0]} hingga 
 source = ColumnDataSource(data=dataTerpilih)
 p.line('Date', jenis_kasus, source=source, line_width=2)
 
-data_grouped = data_covid.groupby('Province')[jenis_kasus].sum().reset_index()
+data_grouped = data_covid.groupby('Province')[jenis_kasus, dataTerpilih].sum().reset_index()
 prov = data_grouped['Province']
 b = figure(title='', x_range=prov, plot_width=800, plot_height=500)
 sc = ColumnDataSource(data=data_grouped)
