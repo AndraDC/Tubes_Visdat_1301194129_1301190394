@@ -19,12 +19,14 @@ st.header('Jumlah Kasus per Hari')
 tanggalMulai = data_covid['Date'].min().date()
 tanggalAkhir = data_covid['Date'].max().date()
 
-
-
 tanggalTerpilih = st.slider('Pilih Tanggal', tanggalMulai, tanggalAkhir, (tanggalMulai, tanggalAkhir))
+
 data_terfilter = data_covid[(data_covid['Date']).dt.date == tanggalTerpilih]
+
 tanggalTerpilih = (tanggalTerpilih[0]), (tanggalTerpilih[1])
+
 dataTerpilih = data_covid[(data_covid['Date'] >= pd.to_datetime(tanggalTerpilih[0])) & (data_covid['Date'] <= pd.to_datetime(tanggalTerpilih[1]))]
+
 jenis_kasus = st.selectbox('Pilih Jenis Kasus', ['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases',
                                                  'Total Deaths', 'Total Recovered', 'Total Active Cases' ])
 
@@ -32,13 +34,8 @@ p = figure(title=f'Jumlah {jenis_kasus} per Tanggal {tanggalTerpilih[0]} hingga 
            x_axis_label='Tanggal', y_axis_label='Jumlah Kasus', plot_width=800, plot_height=400)
 source = ColumnDataSource(data=dataTerpilih)
 p.line('Date', jenis_kasus, source=source, line_width=2)
+
 st.bokeh_chart(p, use_container_width=True)
-  
-
-
-
-
-
 
 selected_indices = []
 
@@ -51,11 +48,9 @@ def plot_tap_event(event):
 
 p.on_event(Tap, plot_tap_event)
 
-hover = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, '@{jenis_kasus}{$jenis_kasus}')], formatters={'@Date': 'datetime'})
+hover = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, '@{jenis_kasus}')], formatters={'@Date': 'datetime'})
 
 p.add_tools(hover)
-
-
 
 if selected_indices:
     data_terpilih = dataTerpilih.iloc[selected_indices]
