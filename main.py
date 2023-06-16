@@ -41,6 +41,7 @@ b = figure(title='', x_range=prov, plot_width=800, plot_height=500)
 sc = ColumnDataSource(data=data_grouped)
 b.vbar(x='Province', top=jenis_kasus, source=sc, width=0.9)
 b.xaxis.major_label_orientation = "vertical"
+b.yaxis.formatter = NumeralTickFormatter(format='0,0')
 
 selected_indices = []
 
