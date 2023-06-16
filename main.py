@@ -35,8 +35,6 @@ p = figure(title=f'Jumlah {jenis_kasus} per Tanggal {tanggalTerpilih[0]} hingga 
 source = ColumnDataSource(data=dataTerpilih)
 p.line('Date', jenis_kasus, source=source, line_width=2)
 
-st.bokeh_chart(p, use_container_width=True)
-
 selected_indices = []
 
 def plot_tap_event(event):
@@ -51,6 +49,8 @@ p.on_event(Tap, plot_tap_event)
 hover = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, '@{jenis_kasus}')], formatters={'@Date': 'datetime'})
 
 p.add_tools(hover)
+
+st.bokeh_chart(p, use_container_width=True)
 
 if selected_indices:
     data_terpilih = dataTerpilih.iloc[selected_indices]
