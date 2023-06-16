@@ -27,7 +27,7 @@ tanggalTerpilih = (tanggalTerpilih[0]), (tanggalTerpilih[1])
 
 dataTerpilih = data_covid[(data_covid['Date'] >= pd.to_datetime(tanggalTerpilih[0])) & (data_covid['Date'] <= pd.to_datetime(tanggalTerpilih[1]))]
 
-kasus = st.selectbox('Pilih Jenis Kasus', list(data_covid[['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases','Total Deaths', 'Total Recovered', 'Total Active Cases']]))
+kasus = st.selectbox('Pilih Jenis Kasus', list(dataTerpilih[['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases','Total Deaths', 'Total Recovered', 'Total Active Cases']]))
 
 def format_tooltip(column):
     return f'@{column}'
