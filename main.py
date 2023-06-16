@@ -33,7 +33,7 @@ jenis_kasus = st.selectbox('Pilih Jenis Kasus', ['New Cases', 'New Deaths', 'New
 p = figure(title=f'Jumlah {jenis_kasus} per Tanggal {tanggalTerpilih[0]} hingga {tanggalTerpilih[1]}', x_axis_type='datetime', 
            x_axis_label='Tanggal', y_axis_label='Jumlah Kasus', plot_width=800, plot_height=400)
 source = ColumnDataSource(data=dataTerpilih)
-p.line(jenis_kasus,'Date',  source=source, line_width=2)
+p.line('Date', 'New Cases', source=source, line_width=2)
 
 selected_indices = []
 
