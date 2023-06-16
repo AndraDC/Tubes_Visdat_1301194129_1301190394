@@ -9,7 +9,7 @@ from bokeh.plotting import figure
 from bokeh.models import ColumnDataSource, HoverTool, NumeralTickFormatter
 from bokeh.events import Tap
 
-data_covid = pd.read_csv('test.csv')  
+data_covid = pd.read_csv('test (2).csv')  
 
 data_covid['Date'] = pd.to_datetime(data_covid['Date'])
 
@@ -35,13 +35,7 @@ p = figure(title=f'Jumlah {jenis_kasus} per Tanggal {tanggalTerpilih[0]} hingga 
 source = ColumnDataSource(data=dataTerpilih)
 p.line('Date', jenis_kasus, source=source, line_width=2)
 
-data_grouped = dataTerpilih.groupby('Province')[jenis_kasus].sum().reset_index()
-prov = data_grouped['Province']
-b = figure(title='', x_range=prov, plot_width=800, plot_height=500)
-sc = ColumnDataSource(data=data_grouped)
-b.vbar(x='Province', top=jenis_kasus, source=sc, width=0.9)
-b.xaxis.major_label_orientation = "vertical"
-b.yaxis.formatter = NumeralTickFormatter(format='0,0')
+
 
 selected_indices = []
 
@@ -57,11 +51,11 @@ p.on_event(Tap, plot_tap_event)
 hover1 = HoverTool(tooltips=[('Tanggal', '@Date{%F}'), (jenis_kasus, '@{jenis_kasus}')], formatters={'@Date': 'datetime'})
 p.add_tools(hover1)
 
-hover2 = HoverTool(tooltips=[(jenis_kasus, '@{jenis_kasus}')])
-b.add_tools(hover2)
+#hover2 = HoverTool(tooltips=[(jenis_kasus, '@{jenis_kasus}')])
+#b.add_tools(hover2)
 
 st.bokeh_chart(p, use_container_width=True)
-st.bokeh_chart(b, use_container_width=True)
+#st.bokeh_chart(b, use_container_width=True)
 
 if selected_indices:
     data_terpilih = dataTerpilih.iloc[selected_indices]
