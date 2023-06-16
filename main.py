@@ -9,7 +9,7 @@ from bokeh.plotting import figure
 from bokeh.models import ColumnDataSource, HoverTool
 from bokeh.events import Tap
 
-data_covid = pd.read_csv('test.csv')  
+data_covid = pd.read_csv('test (2).csv')  
 
 data_covid['Date'] = pd.to_datetime(data_covid['Date'])
 
@@ -26,7 +26,7 @@ data_terfilter = data_covid[(data_covid['Date']).dt.date == tanggalTerpilih]
 tanggalTerpilih = (tanggalTerpilih[0]), (tanggalTerpilih[1])
 
 dataTerpilih = data_covid[(data_covid['Date'] >= pd.to_datetime(tanggalTerpilih[0])) & (data_covid['Date'] <= pd.to_datetime(tanggalTerpilih[1]))]
-prov = (data_covid['Province'])
+prov = data_covid[(data_covid['Province']).to_dict()]
 
 jenis_kasus = st.selectbox('Pilih Jenis Kasus', ['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases',
                                                  'Total Deaths', 'Total Recovered', 'Total Active Cases' ])
