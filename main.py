@@ -36,7 +36,7 @@ with col2:
            x_axis_label='Tanggal', y_axis_label='Jumlah Kasus', plot_width=800, plot_height=400)
   source = ColumnDataSource(data=dataTerpilih)
   p.line('Date', jenis_kasus, source=source, line_width=2)
-  st.bokeh_chart(p)
+  st.bokeh_chart(p, u_container_width=True)
 
 
 
