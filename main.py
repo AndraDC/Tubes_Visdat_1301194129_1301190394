@@ -26,7 +26,6 @@ data_terfilter = data_covid[(data_covid['Date']).dt.date == tanggalTerpilih]
 tanggalTerpilih = (tanggalTerpilih[0]), (tanggalTerpilih[1])
 
 dataTerpilih = data_covid[(data_covid['Date'] >= pd.to_datetime(tanggalTerpilih[0])) & (data_covid['Date'] <= pd.to_datetime(tanggalTerpilih[1]))]
-prov = data_covid['Province'].values
 
 jenis_kasus = st.selectbox('Pilih Jenis Kasus', ['New Cases', 'New Deaths', 'New Recovered','New Active Cases', 'Total Cases',
                                                  'Total Deaths', 'Total Recovered', 'Total Active Cases' ])
@@ -36,6 +35,8 @@ p = figure(title=f'Jumlah {jenis_kasus} per Tanggal {tanggalTerpilih[0]} hingga 
 source = ColumnDataSource(data=dataTerpilih)
 p.line('Date', jenis_kasus, source=source, line_width=2)
 
+data_grouped = data_covid.groupby('Province')[jenis_kasus].sum().reset_index()
+prov = data_grouped.values
 b = figure(title=f'bar', x_range=prov, plot_width=800, plot_height=400)
 sc = ColumnDataSource(data=dict(x=prov))
 #b.vbar('x', top=jenis_kasus, source=sc, width=0.9)
